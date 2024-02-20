@@ -5,6 +5,7 @@ import { useLetterContext } from "../../context/LetterContext";
 
 const LetterList = ({ selectedTab }) => {
     const { letters } = useLetterContext();
+    console.log("Letters in LetterList:", letters);
     const filteredLetters = selectedTab
         ? letters.filter((letter) => letter.recipient === selectedTab)
         : letters;

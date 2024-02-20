@@ -12,14 +12,21 @@ const LetterDetail = ({ letters, updateLetter, deleteLetter }) => {
 
     useEffect(() => {
         // letterId에 해당하는 편지를 찾아서 editedContent에 설정합니다.
-        const selectedLetter = letters.find(
-            (letter) => letter.name === letterId
-        );
-        if (selectedLetter) {
-            setEditedContent(selectedLetter.content);
+        console.log("Letter ID:", letterId);
+        if (letters && letters.length > 0) {
+            const selectedLetter = letters.find(
+                (letter) => letter.name === letterId
+            );
+
+            if (selectedLetter) {
+                setEditedContent(selectedLetter.content);
+            }
         }
     }, [letters, letterId]);
 
+    if (!letters || (Array.isArray(letters) && letters.length === 0)) {
+        return <div>Loading...</div>;
+    }
     const selectedLetter = letters.find((letter) => letter.name === letterId);
 
     if (!selectedLetter) {
