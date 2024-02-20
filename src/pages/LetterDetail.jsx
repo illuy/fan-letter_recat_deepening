@@ -1,9 +1,11 @@
 // LetterDetail.jsx
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useLetterContext } from "../context/LetterContext"; // 경로 확인
 
-const LetterDetail = ({ letters, updateLetter, deleteLetter }) => {
+const LetterDetail = () => {
+    const { letters, updateLetter, deleteLetter } = useLetterContext();
     const { letterId } = useParams();
     const navigate = useNavigate();
 
@@ -12,7 +14,9 @@ const LetterDetail = ({ letters, updateLetter, deleteLetter }) => {
 
     useEffect(() => {
         // letterId에 해당하는 편지를 찾아서 editedContent에 설정합니다.
-        console.log("Letter ID:", letterId);
+        console.log("Letters in LetterDetail:", letters);
+        console.log("Letter ID in useEffect:", letterId);
+
         if (letters && letters.length > 0) {
             const selectedLetter = letters.find(
                 (letter) => letter.name === letterId
@@ -24,10 +28,18 @@ const LetterDetail = ({ letters, updateLetter, deleteLetter }) => {
         }
     }, [letters, letterId]);
 
-    if (!letters || (Array.isArray(letters) && letters.length === 0)) {
+    // if (!letters || (Array.isArray(letters) && letters.length === 0)) {
+    //     return <div>Loading...</div>;
+    // }
+    if (!letters || letters.length === 0) {
         return <div>Loading...</div>;
     }
+
     const selectedLetter = letters.find((letter) => letter.name === letterId);
+    // const selectedLetter = letters.find((letter) => letter.name == letterId);
+    // const selectedLetter = letters.find(
+    //     (letter) => String(letter.name) === String(letterId)
+    // );
 
     if (!selectedLetter) {
         return <div>편지를 찾을 수 없습니다.</div>;
