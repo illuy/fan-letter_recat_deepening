@@ -31,9 +31,6 @@ const LetterDetail = () => {
     // if (!letters || (Array.isArray(letters) && letters.length === 0)) {
     //     return <div>Loading...</div>;
     // }
-    if (!letters || letters.length === 0) {
-        return <div>Loading...</div>;
-    }
 
     const selectedLetter = letters.find((letter) => letter.name === letterId);
     // const selectedLetter = letters.find((letter) => letter.name == letterId);
@@ -105,7 +102,7 @@ const LetterDetail = () => {
 export default LetterDetail;
 
 const DetailSection = styled.section`
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
