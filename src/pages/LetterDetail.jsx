@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useLetterContext } from "../context/LetterContext"; // 경로 확인
+import { useLetterContext } from "../context/LetterContext";
 
 const LetterDetail = () => {
     const { letters, updateLetter, deleteLetter } = useLetterContext();
